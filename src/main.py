@@ -37,9 +37,11 @@ def main(dir):
         # gocv.PlotPupils(gray_image, prediction, morphedMask, falseColor, centroid)
 
     except Exception as e:
+        import traceback
         print(f"Something wrong when running EyeModel: {e}")
+        print(traceback.format_exc())
 
 if __name__ == '__main__':
-    dir = "C:\\temp\\WebCamGazeEstimation\\"
+    dir = "E:\\WebCamGazeEstimation\\"
     main(dir)
 

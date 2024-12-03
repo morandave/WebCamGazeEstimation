@@ -60,7 +60,9 @@ class HomTransform:
         df.to_csv(os.path.join(self.dir, "results", "MyGazeTracking.csv"))
 
     def RunGazeOnScreen(self, model, cap, sfm=False):
-        """ Present different trajectories on screen and record gaze
+        # TODO: 视线缓存功能封装，使得外部可以调用一个接口不短的获得视线坐标
+        """ 
+        Present different trajectories on screen and record gaze
         """
 
         if cap != None:
@@ -114,7 +116,7 @@ class HomTransform:
                 # out_video.write(frame)
 
             key_pressed = cv2.waitKey(60)
-            if key_pressed == 27:
+            if key_pressed == 27:# ESC
                 break
 
         cap.release()
@@ -488,6 +490,7 @@ class HomTransform:
         return vector
 
     def _pixel2mm(self, vector_px):
+        '''将二维像素坐标（以像素为单位）转换为实际物理尺寸（以毫米为单位），基于目标区域的物理宽度、高度和像素分辨率。'''
         if isinstance(vector_px, list):
             vector_px = np.array(vector_px)
         vector = vector_px.copy()
